@@ -1,22 +1,47 @@
-import {Controller, Get, HttpCode, Post} from '@nestjs/common';
+import {Controller, Delete, Get, HttpCode, Post, Put, Headers} from '@nestjs/common';
 import { AppService } from './app.service';
 
-@Controller()
+@Controller('/api')
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get()  // METODO HTTP
+  @Get('/hello-world')  // METODO HTTP
   getHello(): string {
-    return this.appService.getHello();
+     return 'hola mundo'
   }
-  @Post()  // METODO HTTP
-  @HttpCode(200)
-  postHello(){
-      return 'Hola mundo en post';
+
+  @Get('/adivina')
+  adivina(@Headers() headers): string {
+      console.log('Headers: ',headers);
+      const numeroRandomico = Math.round(Math.random()*10);
+      return 'Ok';
   }
+
+  @Post('/hola-mundo')  // METODO HTTP
+  postHello(): string{
+    return 'hola mundo';
+  }
+  @Put('/helo')
+  putHello(): string{
+    return 'helo'
+  }
+  @Delete('/ola')
+  deleteHello(): string{
+    return 'ola'
+  }
+
+
+
 }
-
-
+const json = [
+  {llave:"valor"}
+];
+let obketo = {
+  propiedad: 'valor',
+  propiedad2: 'valor2'
+};
+objeto.propiedad
+objeto.propiedad2
 /*
 @NombreDecoradorClase() // Decorador -> FUNCION
 class usuario{
@@ -38,8 +63,3 @@ class usuario{
   protected metodoProtegido(){}
 }
 */
-
-
-
-
-
