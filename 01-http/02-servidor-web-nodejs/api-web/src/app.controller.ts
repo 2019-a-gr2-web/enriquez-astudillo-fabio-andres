@@ -14,6 +14,12 @@ import {
 } from '@nestjs/common';
 import {AppService} from './app.service';
 
+
+import * as Joi from '@hapi/joi';
+
+// const Joi = require('@hapi/joi');
+
+
 // http://192.168.1.10:3000/segmentoInicial/segmentoAccion
 // http://192.168.1.10:3000/mascotas/crear
 // http://192.168.1.10:3000/mascotas/borrar
@@ -50,7 +56,6 @@ export class AppController {
     adivina(@Headers() headers): string {
         console.log('Headers: ', headers);
         const numeroRandomico = Math.round(Math.random() * 10);
-        console.log('Numero: ', numeroRandomico);
         const numeroDeCabecera = Number(headers.numero);
 
         if (numeroDeCabecera == numeroRandomico) {
@@ -105,19 +110,6 @@ export class AppController {
         }
 
     }
-
-    @Get('/semilla')
-    semilla(@Request() request){
-        console.log(request.cookies);
-        const cookies = request.cookies;
-        if(cookies.micookie){
-            return 'ok'
-        }else{
-            return ':('
-        }
-
-    }
-
     @HttpCode(200)
     @Get('/suma')
     suma(@Headers() headers){
@@ -143,6 +135,60 @@ export class AppController {
                 String(Number(body.numero1)/Number(body.numero2)) + '\n' +
                 String(Number(query.numero1)/Number(query.numero2));
         }
+    }
+    @Get('/semilla')
+    semilla(
+        @Request() request,
+        @Response() response
+    ) {
+        console.log(request.cookies);
+        const cookies = request.cookies; // JSON
+
+        const esquemaValidacionNumero = Joi
+            .object()
+            .keys({
+                numero: Joi.number().integer().required()
+            });
+
+        const objetoValidacion = {
+            numero: cookies.numero
+        };
+        const resultado = Joi.validate(objetoValidacion,
+            esquemaValidacionNumero);
+
+        if (resultado.error) {
+            console.log('Resultado: ', resultado);
+        } else {
+            console.log('Numero valido');
+        }
+
+        const cookieSegura = request.signedCookies.fechaServidor;
+        if(cookieSegura){
+            console.log('Cookie segura');
+        }else{
+            console.log('No es valida esta cookie');
+        }
+
+        if (cookies.micookie) {
+
+            const horaFechaServidor = new Date();
+            const minutos = horaFechaServidor.getMinutes();
+            horaFechaServidor.setMinutes(minutos + 1);
+
+            response.cookie(
+                'fechaServidor',      // NOMBRE (key)
+                new Date().getTime(),  // VALOR  (value)
+                {    // OPCIONES
+                    // expires: horaFechaServidor
+                    signed: true
+                }
+            );
+
+            return response.send('ok');
+        } else {
+            return response.send(':(');
+        }
+
     }
 
 
@@ -236,5 +282,3 @@ objeto.propiedadTres = 'valor3';
 objeto['propiedadTres'] = 'valor 3';
 delete objeto.propiedadTres; // -> destruir
 objeto.propiedadTres = undefined; // -> destruir
-
-
