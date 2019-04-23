@@ -50,6 +50,7 @@ export class AppController {
     adivina(@Headers() headers): string {
         console.log('Headers: ', headers);
         const numeroRandomico = Math.round(Math.random() * 10);
+        console.log('Numero: ', numeroRandomico);
         const numeroDeCabecera = Number(headers.numero);
 
         if (numeroDeCabecera == numeroRandomico) {
@@ -117,8 +118,32 @@ export class AppController {
 
     }
 
-
-
+    @HttpCode(200)
+    @Get('/suma')
+    suma(@Headers() headers){
+        return String(Number(headers.numero1)+Number(headers.numero2));
+    }
+    @HttpCode(201)
+    @Post('/resta')
+    resta(@Body() body){
+        return String(Number(body.numero1)-Number(body.numero2));
+    }
+    @HttpCode(202)
+    @Put('/multiplicacion')
+    multiplicacion(@Query() query){
+        return String(Number(query.numero1)*Number(query.numero2));
+    }
+    @HttpCode(203)
+    @Delete('/division')
+    division(@Headers() headers, @Body() body, @Query() query){
+        if(Number(headers.numero2)==0 || Number(body.numero2)==0 || Number(query.numero2)==0)
+            return 'division entre 0';
+        else{
+            return String(Number(headers.numero1)/Number(headers.numero2)) + '\n' +
+                String(Number(body.numero1)/Number(body.numero2)) + '\n' +
+                String(Number(query.numero1)/Number(query.numero2));
+        }
+    }
 
 
     // js -> ts
