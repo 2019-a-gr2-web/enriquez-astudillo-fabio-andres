@@ -41,7 +41,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/01-http/02-servidor-web-nodejs/api-web/src/app.controller.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2372">
+            <state relative-caret-position="24">
               <caret line="137" column="5" selection-start-line="137" selection-start-column="5" selection-end-line="137" selection-end-column="5" />
               <folding>
                 <element signature="e#0#174#0" expanded="true" />
@@ -125,7 +125,7 @@
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-357" />
-    <option name="y" value="-20" />
+    <option name="y" value="-21" />
     <option name="width" value="1401" />
     <option name="height" value="822" />
   </component>
@@ -226,11 +226,12 @@
       <workItem from="1556007693754" duration="2027000" />
       <workItem from="1556045311256" duration="10000" />
       <workItem from="1556046226232" duration="5736000" />
+      <workItem from="1556107875333" duration="87000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25353000" />
+    <option name="totallyTimeSpent" value="25440000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
@@ -338,7 +339,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/01-http/02-servidor-web-nodejs/api-web/src/app.controller.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2372">
+        <state relative-caret-position="24">
           <caret line="137" column="5" selection-start-line="137" selection-start-column="5" selection-end-line="137" selection-end-column="5" />
           <folding>
             <element signature="e#0#174#0" expanded="true" />
