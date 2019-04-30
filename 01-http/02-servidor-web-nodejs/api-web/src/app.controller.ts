@@ -24,6 +24,7 @@ import * as Joi from '@hapi/joi';
 // http://192.168.1.10:3000/mascotas/crear
 // http://192.168.1.10:3000/mascotas/borrar
 // @Controller(segmentoInicial)
+
 @Controller('/api')
 export class AppController {
     constructor(private readonly appService: AppService) {
@@ -35,7 +36,164 @@ export class AppController {
         return res.render('inicio');
     }
 
+    
+    
+
 }
+/********************************************************************************************/
+// 1) Impriman en consola todos los elementos
+
+const arregloNumerosForEach = [1, 2, 3, 4, 5, 6];
+
+const rForEach = arregloNumerosForEach
+    .forEach(
+        function (valorActual) {
+            console.log(`Valor: ${valorActual}`);
+        }
+    );
+
+
+const r2ForEach = arregloNumerosForEach
+    .forEach(n => console.log(`${n}`));
+
+
+console.log(`RESPUESTA FOREACH: ${rForEach}`);
+
+// 2) Sumen 2 a los pares y 1 a los impares
+
+const arregloNumerosMap = [1, 2, 3, 4, 5, 6];
+
+const rMap = arregloNumerosMap
+    .map(  // Devolver el nuevo VALOR de ese elemento
+        (valorActual) => {
+            const esPar = valorActual % 2 == 0;
+            if (esPar) {
+                const nuevoValor = valorActual + 2;
+                return nuevoValor;
+            } else {
+                const nuevoValor = valorActual + 1;
+                return nuevoValor;
+            }
+        }
+    );
+
+console.log(`RESPUESTA MAP: ${rMap}`); // Nuevo Arreglo
+
+// 3) Encuentren si hay el numero 4
+
+const arregloNumerosFind = [1, 2, 3, 4, 5, 6];
+
+const rFind = arregloNumerosFind
+    .find( // CONDICION para devolver ese ELEMENTO
+        (valorActual)=>{
+            return valorActual == 4;
+        }
+    );
+console.log(`Respuesta FIND: ${rFind}`);
+
+// 4) Filtren los numeros menores a 5
+
+
+const arregloNumerosFilter = [1, 2, 3, 4, 5, 6];
+
+const rFilter = arregloNumerosFilter
+    .filter(  // CONDICION TRUE  -> Agrega al arreglo
+        //       CONDICION FALSA -> Se omite del arreglo
+        (valorActual)=>{
+            return valorActual < 5;
+        }
+    );
+console.log(`Respuesta FILTER: ${rFilter}`);
+ 
+// 5) TODOS los valores positivos
+
+const arregloNumerosEvery = [1, 2, 3, 4, 5, 6];
+
+const respuestaEvery = arregloNumerosEvery // AND
+        .every(  //si TODOS cumplen TRUE
+                 //si ALGUNO no cumple FALSE
+            (valorActual)=>{
+                return valorActual > 0
+            }
+        );
+
+// 6) ALGUN valor es menor que 2
+
+const arregloNumerosSome = [1, 2, 3, 4, 5, 6];
+
+const respuestaSome = arregloNumerosEvery // AND
+        .some(  //si TODOS cumplen TRUE
+                 //si ALGUNO no cumple FALSE
+            (valorActual)=>{
+                return valorActual > 0
+            }
+        );
+
+
+// 7) Sumen todos los valores
+
+const valorDondeEmpiezaCalculo = 0;
+const arregloNumerosReduce = [1, 2, 3, 4, 5, 6];
+
+arregloNumerosReduce.
+            reduce(
+                (acumulado, valorActual) =>{
+                    return acumulado + valorActual;
+                },
+                valorDondeEmpiezaCalculo
+            );
+
+// 8) Restar todos los valores de 100
+
+const valorFinalCalculo = 100;
+const arregloNumerosReduceResta = [1, 2, 3, 4, 5, 6];
+
+const resCien = arregloNumerosReduceResta.
+            reduce(
+                (acumulado, valorActual) =>{
+                    return acumulado - valorActual;
+                },
+                valorFinalCalculo
+            );
+
+console.log(resCien);
+
+// < 4 --> 10% + 5 || >= 4 --> 15% + 3
+
+const arregloNumeros = [1,2,3,4,5,6]
+const valorInicial = 0;
+
+const ejercicio = arregloNumeros.reduce(
+    (acumulado, valorActual) =>{
+        if(valorActual < 4)
+            return acumulado + valorActual*1.1 + 5
+        else
+            return acumulado + valorActual*1.15 + 3
+        
+    },
+    valorInicial
+    
+);
+console.log(`Respuesta: ${ejercicio}`);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     // @Controller(segmentoAccion)
     /* @Get('/hello-world')  // METODO HTTP
@@ -299,13 +457,13 @@ if (false) { // Falsy
 } else {
     console.log('Falso');
 }
-*/
+
 if ("") { //  Falsy
     console.log('Verdadero "" ');
 } else {
     console.log('Falso "" ');
 }
-/*
+
 if ("a") { // Truty
     console.log('Verdadero "a" ');
 } else {
@@ -439,3 +597,4 @@ console.log(`Respuesta FILTER: ${rFilter}`);
 // 1.1) Sumen 10 a todos
 // 1.2) Filtren a los mayores a 15
 // 1.3) Si hay algun numero mayor a 30
+

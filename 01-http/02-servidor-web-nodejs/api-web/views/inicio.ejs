@@ -1,2 +1,12 @@
 <% const nombre = 'Fabio' %>
 <%=nombre%>
+<%const arreglo = [1,2,3,4,5];%>
+<%=arreglo%>
+<%const objeto = {nombre:'Fabio'}%>
+<%=objeto%>
+
+<ol>
+    <%arreglo.forEach((valorActual) =>{ %>
+        <li> Numero: <%= valorActual%> <li>
+    <%})%>
+</ol>
