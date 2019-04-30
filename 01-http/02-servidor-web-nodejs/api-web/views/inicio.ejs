@@ -1,0 +1,62 @@
+<%const nombre = 'Adrian';%>
+<%= nombre%>
+
+<%const arreglo = [1,2,3,4,5]; %>
+
+<%
+ function holaMundo() {
+     console.log('HolaMundo')
+ }
+ const respuestaHolaMundo = holaMundo();
+ console.log('Resp hola mundo: ', respuestaHolaMundo);
+
+function suma(a,b) {
+    return a+b;
+}
+const respSuma = suma(1,2);
+console.log('Resp suma: ',respSuma);
+//condicionales
+    if ({}){
+     console.log('Verdadero');
+ } else {
+     console.log('Falso');
+ }
+
+
+    //operadores de arreglos en js
+
+    const arregloNumeros = [1,2,3,4,5,6]
+
+    //imprimir por consola
+            const rForEach = arregloNumeros
+            .forEach(n => console.log(`${n}`));
+
+    //sumar 2 a los pares y 1 a los impares
+
+ const arregloNumerosMap = [1,2,3,4,5,6]
+ const rMap = arregloNumerosMap
+         .map(
+
+                 ()=>{
+                     if(valorActual)=>{
+                         const esPar = valorActual%2==0;
+                         if (esPar){
+                             const nuevoValor = valorActual +2;
+                             return nuevoValor;
+                         } else{
+                             const nuevoValor = valorActual + 1;
+                             return numeroValor;
+                         }
+                     }
+                     return
+                 }
+
+         )
+    //Encontrar si hay numero 4
+    //Filtrar los menores a 5
+    //Todos los valores positivos
+    //algun valor es menro que 2
+    //sumar todos
+    //restar todos de 100
+
+ %>
