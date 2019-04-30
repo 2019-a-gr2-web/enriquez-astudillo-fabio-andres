@@ -11,7 +11,7 @@ async function bootstrap() {
     app.use(cookieParser('Secreto'));
     app.setViewEngine('ejs');
     app.setBaseViewsDir(join(__dirname, '..', 'views'));
-    await app.listen(3001);
+    await app.listen(3000);
 }
 
 bootstrap();
