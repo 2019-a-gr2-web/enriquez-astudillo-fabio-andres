@@ -29,8 +29,16 @@ export class AppController {
     constructor(private readonly appService: AppService) {
     }
 
+    
+    @Get('inicio')
+    helloWorld(@Response() res): string {
+        return res.render('inicio');
+    }
+
+}
+
     // @Controller(segmentoAccion)
-    @Get('/hello-world')  // METODO HTTP
+    /* @Get('/hello-world')  // METODO HTTP
     helloWorld(): string {
         return 'Hello world';
     }
@@ -164,15 +172,7 @@ export class AppController {
             return response.send(':(');
         }
 
-    }
-
-
-    @Get('inicio')
-    inicio(
-        @Response() res
-    ) {
-        return res.render('inicio');
-    }
+    } */
 
 
     // js -> ts
@@ -197,7 +197,6 @@ export class AppController {
     * */
 
 
-}
 
 
 /*
@@ -222,7 +221,7 @@ class usuario{
 }
 */
 
-const json = [
+/* const json = [
     {
         llave: 'valor',
         "key": "value",
@@ -300,13 +299,13 @@ if (false) { // Falsy
 } else {
     console.log('Falso');
 }
-
+*/
 if ("") { //  Falsy
     console.log('Verdadero "" ');
 } else {
     console.log('Falso "" ');
 }
-
+/*
 if ("a") { // Truty
     console.log('Verdadero "a" ');
 } else {
@@ -430,7 +429,7 @@ const rFilter = arregloNumerosFilter
         }
     );
 console.log(`Respuesta FILTER: ${rFilter}`);
-
+ */
 // 5) TODOS los valores positivos
 // 6) ALGUN valor es menor que 2
 // 7) Sumen todos los valores
