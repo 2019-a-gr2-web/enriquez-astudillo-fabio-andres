@@ -33,14 +33,30 @@ export class AppController {
     
     @Get('inicio')
     helloWorld(@Response() res): string {
-        return res.render('inicio');
+        return res.render('inicio',
+            {
+                estaVivo:true
+            }
+        );
     }
 
-    
+    @Get('peliculas')
+    peliculas(@Response() res): string {
+        return res.render('peliculas/inicio.ejs',
+            {
+                estaVivo:true
+            }
+        );
+    }
     
 
 }
-/********************************************************************************************/
+
+
+
+
+/*
+/********************************************************************************************
 // 1) Impriman en consola todos los elementos
 
 const arregloNumerosForEach = [1, 2, 3, 4, 5, 6];
@@ -177,8 +193,26 @@ const ejercicio = arregloNumeros.reduce(
 console.log(`Respuesta: ${ejercicio}`);
 
 
+// 1.1) Sumen 10 a todos
+// 1.2) Filtren a los mayores a 15
+// 1.3) Si hay algun numero mayor a 30
 
+const arregloEj = [1,2,3,4,5,6]
 
+arregloEj
+    .map(
+        (valorActual)=>{
+            return valorActual + 10;
+        }
+    ).filter(
+        (valorActual)=> {
+            return valorActual > 15;
+        }
+    ).some(
+        (valorActual)=>{
+            return valorActual > 30;
+        }
+    );
 
 
 
