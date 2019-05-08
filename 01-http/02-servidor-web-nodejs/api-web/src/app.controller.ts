@@ -48,6 +48,11 @@ export class AppController {
             }
         );
     }
+
+    @Get('estilos')
+    estilos(@Response() res): string {
+        return res.render('peliculas/estilos');
+    }
     
 
 }
