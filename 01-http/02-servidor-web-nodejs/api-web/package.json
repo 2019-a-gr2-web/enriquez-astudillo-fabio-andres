@@ -31,6 +31,7 @@
     "rimraf": "^2.6.2",
     "rxjs": "^6.3.3",
     "serve-favicon": "^2.5.0"
+
   },
   "devDependencies": {
     "@nestjs/testing": "^6.0.0",
