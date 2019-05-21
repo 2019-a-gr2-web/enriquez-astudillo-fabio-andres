@@ -6,6 +6,7 @@
       <change beforePath="$PROJECT_DIR$/01-http/02-servidor-web-nodejs/api-web/views/peliculas/estilos.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/01-http/02-servidor-web-nodejs/api-web/views/peliculas/estilos.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/01-http/02-servidor-web-nodejs/api-web/views/peliculas/inicio.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/01-http/02-servidor-web-nodejs/api-web/views/peliculas/inicio.ejs" afterDir="false" />
     </list>
+
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -28,8 +29,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/01-http/02-servidor-web-nodejs/api-web/src/app.controller.ts">
           <provider selected="true" editor-type-id="text-editor">
+
             <state relative-caret-position="6106">
               <caret line="288" selection-start-line="288" selection-end-line="288" />
+
             </state>
           </provider>
         </entry>
@@ -72,7 +75,9 @@
         <entry file="file://$PROJECT_DIR$/01-http/02-servidor-web-nodejs/api-web/src/main.ts">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="312">
+
               <caret line="20" column="12" selection-start-line="20" selection-start-column="12" selection-end-line="20" selection-end-column="12" />
+
             </state>
           </provider>
         </entry>
@@ -80,8 +85,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/01-http/02-servidor-web-nodejs/api-web/views/inicio.ejs">
           <provider selected="true" editor-type-id="text-editor">
+
             <state relative-caret-position="504">
               <caret line="21" selection-start-line="21" selection-end-line="21" />
+
             </state>
           </provider>
         </entry>
@@ -127,11 +134,13 @@
       </list>
     </option>
   </component>
+
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-11" />
     <option name="y" value="-11" />
     <option name="width" value="981" />
     <option name="height" value="1032" />
+
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -252,18 +261,25 @@
       <workItem from="1556126224585" duration="2167000" />
       <workItem from="1556132398693" duration="7112000" />
       <workItem from="1556590436004" duration="3000" />
+
       <workItem from="1556651165861" duration="1497000" />
+
       <workItem from="1558363041170" duration="62000" />
+
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+
     <option name="totallyTimeSpent" value="36281000" />
+
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <layout>
+
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4990138" visible="true" weight="0.21462639" />
+
       <window_info id="Structure" order="1" sideWeight="0.5009862" side_tool="true" weight="0.17806041" />
       <window_info id="Favorites" order="2" sideWeight="0.5009862" side_tool="true" weight="0.17806041" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -315,6 +331,7 @@
     <entry file="file://$PROJECT_DIR$/01-http/02-servidor-web-nodejs/api-web/src/app.module.ts">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+
     <entry file="file://$PROJECT_DIR$/01-http/02-servidor-web-nodejs/api-web/src/app.service.ts">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -342,7 +359,9 @@
     <entry file="file://$PROJECT_DIR$/01-http/02-servidor-web-nodejs/api-web/src/main.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="312">
+
           <caret line="20" column="12" selection-start-line="20" selection-start-column="12" selection-end-line="20" selection-end-column="12" />
+
         </state>
       </provider>
     </entry>
@@ -355,6 +374,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/01-http/02-servidor-web-nodejs/api-web/views/inicio.ejs">
       <provider selected="true" editor-type-id="text-editor">
+
         <state relative-caret-position="504">
           <caret line="21" selection-start-line="21" selection-end-line="21" />
         </state>
@@ -364,6 +384,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6106">
           <caret line="288" selection-start-line="288" selection-end-line="288" />
+
         </state>
       </provider>
     </entry>
