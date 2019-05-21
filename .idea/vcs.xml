@@ -3,6 +3,7 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/01-http/02-servidor-web-nodejs/api-web" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Deberes-http/CSS - Bootstap/api-web" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/Deberes-http/Servidor-Deber2/api-web" vcs="Git" />
   </component>
 </project>

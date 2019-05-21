@@ -27,6 +27,9 @@ import * as Joi from '@hapi/joi';
 
 @Controller('/api')
 export class AppController {
+
+    arregloUsuarios = [];
+
     constructor(private readonly appService: AppService) {
     }
 
@@ -53,6 +56,7 @@ export class AppController {
     estilos(@Response() res): string {
         return res.render('peliculas/estilos');
     }
+    
     
 
 }
