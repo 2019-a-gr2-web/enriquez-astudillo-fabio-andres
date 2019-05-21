@@ -1,20 +1,19 @@
 import { Injectable } from '@nestjs/common';
 import {Trago} from "./interfaces/Trago";
-import { identity } from 'rxjs';
 
 @Injectable()
 export class frService {
   bddTragos:Trago[] = [];
   recnum = 1;
 
-  crear(nuevoTrago:Trago){
+  crear(nuevoTrago:Trago):Trago{
     nuevoTrago.id = this.recnum;
     this.recnum++;
     this.bddTragos.push(nuevoTrago);
     return nuevoTrago;
   }
 
-  consultar(id:number){
+  consultar(id:number):Trago{
     return this.bddTragos.find(
       (trago)=>{
        return trago.id === id; 
@@ -22,7 +21,7 @@ export class frService {
     );
   }
 
-  actualiar(tragoActualizado:Trago, id:number){
+  actualiar(tragoActualizado:Trago, id:number):Trago[]{
     const indice = this.bddTragos.findIndex(
       (trago)=>{
         return trago.id === id
@@ -33,7 +32,7 @@ export class frService {
     return this.bddTragos;
   }
 
-  eliminar(id:number){
+  eliminar(id:number):Trago[]{
    const indice = this.bddTragos.findIndex(
      (trago)=>{
        return trago.id === id
