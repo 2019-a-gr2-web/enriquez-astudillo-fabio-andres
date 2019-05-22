@@ -21,7 +21,6 @@
 .list-header>li{
     display: inline-block;
     padding: 13px;
-    padding-bottom: 0;
     font-size: 88%;
     padding-right: 32px;
     cursor: pointer;
@@ -238,4 +237,13 @@
 
 .img-red2{
     width: 75%;
+}
+
+.col-42{
+    display: inline-block;
+}
+
+.mag{
+    background: #039be5;
+    color: white;
 }
