@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Response, Request, Body } from '@nestjs/common';
+import { Controller, Get, Post, Response, Request, Body, Param } from '@nestjs/common';
 import { AppService } from './app.service';
 import {conductor} from './interfaces/conductor';
 
@@ -51,11 +51,20 @@ export class AppController {
   postCrear(
             @Body('nombres') nombres: string,
             @Body('apellidos') apellidos: string,
-            @Body('fechaNac') fechaNac:any,
-            @Body('licVal') licVal:any,
-            @Response() res){
-              
+            @Body('fechaNac') fechaNac: Date,
+            @Body('licVal') licVal: any,
+            @Response() res) {
     this.appService.crear(this.appService.construirConductor(nombres, apellidos, new Date(fechaNac), Boolean(licVal)));
     res.redirect('/api/conductores/gestionar');
+  }
+
+  @Get('/conductores/gestionar/autos/:id')
+  getGestionarAutos(@Param() Param, @Response() res, @Request() req){
+    const Nombre:String = this.appService.getNombre(req);
+    return res.render('autos',{
+                                Nombre:Nombre,
+                                bddConductores:this.appService.bddConductores,
+                                id:Param.id
+                              });
   }
 }

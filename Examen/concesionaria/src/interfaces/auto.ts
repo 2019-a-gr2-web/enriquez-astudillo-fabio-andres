@@ -1,5 +1,6 @@
 export interface auto {
-    chasis:number,
+    id: number,
+    chasis: number,
     nombreMarca: string,
     colorUno: string,
     colorDos: string,

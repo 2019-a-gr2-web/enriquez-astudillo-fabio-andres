@@ -23,6 +23,7 @@
     <div>
         <table>
             <tr>
+                <th>Clave</th>
                 <th>Nombres</th>
                 <th>Apellids</th>
                 <th>Fecha de Nacimiento</th>
@@ -32,14 +33,17 @@
             </tr>
             <%bddConductores.forEach((conductor)=>{%>
             <tr>
+                <th><%=conductor.id%></th>
                 <th><%=conductor.nombres%></th>
                 <th><%=conductor.apellidos%></th>
                 <th><%=conductor.fechaNacimineto%></th>
-                <th><%=conductor.autos.size%></th>
+                <th><%=conductor.autos.length%></th>
                 <th><%=conductor.licenciaValida%></th>
                 <th>
                     <button>Borrar</button>
-                    <button>Gestionar Autos</button>
+                    <form action="/api/conductores/gestionar/autos/<%=conductor.id%>" method="GET">
+                        <button>Gestionar Autos</button>
+                    </form>
                 </th>
             </tr>
             <%})%>

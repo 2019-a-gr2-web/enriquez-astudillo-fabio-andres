@@ -1,20 +1,24 @@
 import { Injectable, Request, Response } from '@nestjs/common';
 import {conductor} from './interfaces/conductor';
+import { isDate } from 'util';
 
 @Injectable()
 export class AppService {
 
   bddConductores: conductor[] = [];
+  ids: number = 0;
 
   construirConductor(nombres: string, apellidos: string, fechaNacimiento: Date, licenciaValida: boolean): conductor {
-    const conductor: conductor = {
+    const conductor1:conductor = {
+      id:this.ids,
       nombres,
       apellidos,
-      fechaNacimiento,
-      licenciaValida,
-      autos: [],
+      fechaNacimiento:fechaNacimiento,
+      licenciaValida:licenciaValida,
+      autos: []
     };
-    return conductor;
+    this.ids++;
+    return conductor1;
   }
 
   getNombre(@Request() req) {
