@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Gestionar</title>
+</head>
+<body>
+    <div>
+        <span><%=Nombre%></span>
+        <form action="/api/login" method="POST">
+            <button>Salir</button>
+        </form>
+    </div>
+    <div>
+        <!-- Buscar
+        Botón Buscar-->
+        <form action="/api/conductores/gestionar/crear" method="GET">
+            <button>Crear</button>
+        </form>
+    </div>
+    <div>
+        <table>
+            <tr>
+                <th>Nombres</th>
+                <th>Apellids</th>
+                <th>Fecha de Nacimiento</th>
+                <th>Número de Autos</th>
+                <th>Licencia Válida</th>
+                <th>Acciones</th>
+            </tr>
+            <%bddConductores.forEach((conductor)=>{%>
+            <tr>
+                <th><%=conductor.nombres%></th>
+                <th><%=conductor.apellidos%></th>
+                <th><%=conductor.fechaNacimineto%></th>
+                <th><%=conductor.autos.size%></th>
+                <th><%=conductor.licenciaValida%></th>
+                <th>
+                    <button>Borrar</button>
+                    <button>Gestionar Autos</button>
+                </th>
+            </tr>
+            <%})%>
+
+        </table>
+    </div>
+
+
+</body>
+</html>

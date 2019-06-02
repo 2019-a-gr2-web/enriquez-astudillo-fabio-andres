@@ -1,5 +1,6 @@
 import { Controller, Get, Post, Response, Request, Body } from '@nestjs/common';
 import { AppService } from './app.service';
+import {conductor} from './interfaces/conductor';
 
 @Controller('/api')
 export class AppController {
@@ -16,20 +17,45 @@ export class AppController {
     res.redirect('/api/login');
   }
 
-  @Get('/gestionar')
-  getGestionar(@Response() res, @Request() req){
+  @Get('/conductores')
+  getConductores(@Response() res, @Request() req){
     const Nombre:String = this.appService.getNombre(req);
-    return res.render('gestionar',{Nombre:Nombre});
+    return res.render('conductores',{Nombre:Nombre});
   }
 
-  @Post('/gestionar')
-  postGestionar(@Body('Nombre') Nombre:String, @Response() res){
-    
+  @Post('/conductores')
+  postConductores(@Body('Nombre') Nombre:String, @Response() res){
     res.cookie('Nombre',Nombre,{signed:true});
+    res.redirect('/api/conductores');
+  }
 
+  @Get('/conductores/gestionar')
+  getGestionar(@Response() res, @Request() req){
+    const Nombre:String = this.appService.getNombre(req);
+    return res.render('gestionar',{
+                                      Nombre:Nombre,
+                                      bddConductores:this.appService.bddConductores
+                                    });
+  }
 
+  @Get('/conductores/gestionar/crear')
+  getCrear(@Response() res, @Request() req){
+    const Nombre:String = this.appService.getNombre(req);
+    return res.render('crear',{
+                                Nombre:Nombre,
+                                bddConductores:this.appService.bddConductores
+                              });
+  }
 
-
-    res.redirect('/api/gestionar');
+  @Post('/conductores/gestionar/crear')
+  postCrear(
+            @Body('nombres') nombres: string,
+            @Body('apellidos') apellidos: string,
+            @Body('fechaNac') fechaNac:any,
+            @Body('licVal') licVal:any,
+            @Response() res){
+              
+    this.appService.crear(this.appService.construirConductor(nombres, apellidos, new Date(fechaNac), Boolean(licVal)));
+    res.redirect('/api/conductores/gestionar');
   }
 }
