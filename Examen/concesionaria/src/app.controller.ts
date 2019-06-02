@@ -67,4 +67,28 @@ export class AppController {
                                 id:Param.id
                               });
   }
+
+  @Get('/conductores/gestionar/autos/:id/crear')
+  getCrearAuto(@Param() Param, @Response() res, @Request() req){
+    const Nombre:String = this.appService.getNombre(req);
+    return res.render('crearAutos',{
+                                Nombre:Nombre,
+                                bddConductores:this.appService.bddConductores,
+                                id:Param.id
+                              });
+  }
+
+  @Post('/conductores/gestionar/autos/:id/crear')
+  postCrearAuto(@Body('chasis') chasis: number,
+                @Body('marca') marca: string,
+                @Body('colorUno') colorUno: string,
+                @Body('colorDos') colorDos: string,
+                @Body('modelo') modelo: string,
+                @Body('anio') anio: number,
+                @Response() res,
+                @Param() param
+  ){
+    this.appService.crearAuto(chasis, marca, colorUno, colorDos, modelo, anio, param.id)
+    res.redirect('/api/conductores/gestionar/autos/'+param.id)
+  }
 }

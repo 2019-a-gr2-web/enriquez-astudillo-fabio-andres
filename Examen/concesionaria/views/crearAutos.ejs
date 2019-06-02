@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Crear Auto</title>
+</head>
+<body>
+    <div>
+        <span><%=Nombre%></span>
+        <form action="/api/login" method="POST">
+            <button>Salir</button>
+        </form>
+    </div>
+    <div>
+        <form action="/api/conductores/gestionar/autos/<%=id%>/crear" method="POST">
+        
+        <label for="chasis">Chasis</label>
+        <input type="number" id="chasis" name="chasis" min="100000">
+
+        <label for="marca">Marca</label>
+        <input type="text" id="marca" name="marca">
+
+        <label for="colorUno">Color Primario</label>
+        <input type="text" id="colorUno" name="colorUno">
+
+        <label for="colorDos">Color Secundario</label>
+        <input type="text" id="colorDos" name="colorDos">
+
+        <label for="modelo">Modelo</label>
+        <input type="text" id="modelo" name="modelo">
+
+        <label for="anio">Anio</label>
+        <input type="number" id="anio" name="anio" min="1900" max="2020">
+
+        <button>Confirmar</button>
+    
+        </form>
+
+        <a href="../"><button>Cancelar</button></a>    
+
+    </div>
+    
+</body>
+</html>

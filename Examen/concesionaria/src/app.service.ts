@@ -1,6 +1,6 @@
 import { Injectable, Request, Response } from '@nestjs/common';
 import {conductor} from './interfaces/conductor';
-import { isDate } from 'util';
+import {auto} from './interfaces/auto';
 
 @Injectable()
 export class AppService {
@@ -39,8 +39,18 @@ export class AppService {
     this.bddConductores.push(nuevoConductor);
   }
 
-  
-
+  crearAuto(chasis: number, marca: string, colorUno: string, colorDos: string, modelo: string, anio: number, idCond: number) {
+    const auto1: auto = {
+      chasis,
+      nombreMarca: marca,
+      colorUno,
+      colorDos,
+      nombreModelo: modelo,
+      anio,
+      idConductor: idCond
+    }
+    this.bddConductores[idCond].autos.push(auto1)
+  }
 
 
 }

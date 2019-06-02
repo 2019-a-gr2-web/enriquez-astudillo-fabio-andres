@@ -7,6 +7,50 @@
     <title>Autos</title>
 </head>
 <body>
-    <%=id%>
+        <div>
+            <span><%=Nombre%></span>
+            <form action="/api/login" method="POST">
+                <button>Salir</button>
+            </form>
+            <a href="/api/conductores/gestionar"><button>Regresar</button></a>
+        </div>
+        <div>
+            <!-- Buscar
+            Botón Buscar-->
+            <form action="/api/conductores/gestionar/autos/<%=id%>/crear" method="GET">
+                <button>Crear</button>
+            </form>
+        </div>
+        <div>
+            <table>
+                <tr>
+                    <th>Clave</th>
+                    <th>Chasis</th>
+                    <th>Marca</th>
+                    <th>Color Uno</th>
+                    <th>Color Dos</th>
+                    <th>Nombre del Modelo</th>
+                    <th>Anio</th>
+                    <th>id Conductor</th>
+                    <th>Acciones</th>
+                </tr>
+                <%bddConductores[id].autos.forEach((auto)=>{%>
+                <tr>
+                    <th><%=auto.id%></th>
+                    <th><%=auto.chasis%></th>
+                    <th><%=auto.nombreMarca%></th>
+                    <th><%=auto.colorUno%></th>
+                    <th><%=auto.colorDos%></th>
+                    <th><%=auto.nombreModelo%></th>
+                    <th><%=auto.anio%></th>
+                    <th><%=auto.idConductor%></th>
+                    <th>
+                        <button>Borrar</button>
+                    </th>
+                </tr>
+                <%})%>
+    
+            </table>
+        </div>
 </body>
 </html>
