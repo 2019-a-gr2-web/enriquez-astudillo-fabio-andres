@@ -32,9 +32,11 @@ export class AppController {
   @Get('/conductores/gestionar')
   getGestionar(@Response() res, @Request() req){
     const Nombre:String = this.appService.getNombre(req);
+
     return res.render('gestionar',{
                                       Nombre:Nombre,
-                                      bddConductores:this.appService.bddConductores
+                                      bddConductores:this.appService.bddConductores,
+                                      bool:true
                                     });
   }
 
@@ -54,7 +56,8 @@ export class AppController {
             @Body('fechaNac') fechaNac: Date,
             @Body('licVal') licVal: any,
             @Response() res) {
-    this.appService.crear(this.appService.construirConductor(nombres, apellidos, new Date(fechaNac), Boolean(licVal)));
+    
+    this.appService.crear(this.appService.construirConductor(nombres, apellidos, fechaNac, Boolean(licVal)));
     res.redirect('/api/conductores/gestionar');
   }
 
@@ -91,4 +94,30 @@ export class AppController {
     this.appService.crearAuto(chasis, marca, colorUno, colorDos, modelo, anio, param.id)
     res.redirect('/api/conductores/gestionar/autos/'+param.id)
   }
+
+  @Post('/borrar/conductor/:id')
+  postBorrarConductor(@Param() param, @Response() res){
+    this.appService.borrarConductor(param.id)
+    res.redirect('/api/conductores/gestionar')
+  }
+
+  @Post('/borrar/auto/:idCond/:idAut')
+  postBorrarAuto(@Param() param, @Response() res) {
+    this.appService.borrarAuto(param.idCond, param.idAut)
+    res.redirect('/api/conductores/gestionar/autos/'+param.idCond)
+  }
+
+  @Post('/buscar/auto')
+  PostBuscarAuto(@Body('buscar') buscar: string, @Response() res, @Request() req){
+    const Nombre:String = this.appService.getNombre(req);
+    return res.render('gestionar',{
+                                    bool:false,
+                                    nombre:buscar,
+                                    Nombre:Nombre,
+                                    bddConductores:this.appService.bddConductores
+
+                                  })
+  }
+
+  
 }

@@ -13,7 +13,7 @@ export class AppService {
       id:this.ids,
       nombres,
       apellidos,
-      fechaNacimiento:fechaNacimiento,
+      fechaNacimiento,
       licenciaValida:licenciaValida,
       autos: []
     };
@@ -52,5 +52,12 @@ export class AppService {
     this.bddConductores[idCond].autos.push(auto1)
   }
 
+  borrarConductor(id:number){
+    this.bddConductores.splice(id,1)
+  }
+
+  borrarAuto(idCond: number, idAut:number){
+    this.bddConductores[idCond].autos.splice(idAut,1)
+  }
 
 }

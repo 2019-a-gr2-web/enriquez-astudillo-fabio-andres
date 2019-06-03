@@ -14,8 +14,11 @@
         </form>
     </div>
     <div>
-        <!-- Buscar
-        Botón Buscar-->
+        <form action="/api/buscar/auto" method="POST">
+            <label for="buscar"></label>
+            <input type="text" id="buscar" name="buscar">
+            <button>Buscar</button>
+        </form>
         <form action="/api/conductores/gestionar/crear" method="GET">
             <button>Crear</button>
         </form>
@@ -31,23 +34,49 @@
                 <th>Licencia Válida</th>
                 <th>Acciones</th>
             </tr>
-            <%bddConductores.forEach((conductor)=>{%>
-            <tr>
-                <th><%=conductor.id%></th>
-                <th><%=conductor.nombres%></th>
-                <th><%=conductor.apellidos%></th>
-                <th><%=conductor.fechaNacimineto%></th>
-                <th><%=conductor.autos.length%></th>
-                <th><%=conductor.licenciaValida%></th>
-                <th>
-                    <button>Borrar</button>
-                    <form action="/api/conductores/gestionar/autos/<%=conductor.id%>" method="GET">
-                        <button>Gestionar Autos</button>
-                    </form>
-                </th>
-            </tr>
-            <%})%>
-
+            <%if(bool){%>
+                <%bddConductores.forEach((conductor,index)=>{%>
+                <tr>
+                    <th><%=conductor.id%></th>
+                    <th><%=conductor.nombres%></th>
+                    <th><%=conductor.apellidos%></th>
+                    <th><%=conductor.fechaNacimiento%></th>
+                    <!-- <%console.log(conductor.fechaNacimiento)%> -->
+                    <th><%=conductor.autos.length%></th>
+                    <th><%=conductor.licenciaValida%></th>
+                    <th>
+                        <form action="/api/borrar/conductor/<%=index%>" method="POST">
+                            <button>Borrar</button>
+                        </form>
+                        <form action="/api/conductores/gestionar/autos/<%=index%>" method="GET">
+                            <button>Gestionar Autos</button>
+                        </form>
+                    </th>
+                </tr>
+                <%})%>
+            <%} else {%>
+                <%bddConductores.forEach((conductor,index)=>{%>
+                    <%if(conductor.nombres==nombre){%>
+                        <tr>
+                            <th><%=conductor.id%></th>
+                            <th><%=conductor.nombres%></th>
+                            <th><%=conductor.apellidos%></th>
+                            <th><%=conductor.fechaNacimiento%></th>
+                            <!-- <%console.log(conductor.fechaNacimiento)%> -->
+                            <th><%=conductor.autos.length%></th>
+                            <th><%=conductor.licenciaValida%></th>
+                            <th>
+                                <form action="/api/borrar/conductor/<%=index%>" method="POST">
+                                    <button>Borrar</button>
+                                </form>
+                                <form action="/api/conductores/gestionar/autos/<%=index%>" method="GET">
+                                    <button>Gestionar Autos</button>
+                                </form>
+                            </th>
+                        </tr>
+                    <%}%>    
+                <%})%>
+            <%}%>
         </table>
     </div>
 

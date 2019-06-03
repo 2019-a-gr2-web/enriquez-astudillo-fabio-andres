@@ -24,7 +24,6 @@
         <div>
             <table>
                 <tr>
-                    <th>Clave</th>
                     <th>Chasis</th>
                     <th>Marca</th>
                     <th>Color Uno</th>
@@ -34,9 +33,8 @@
                     <th>id Conductor</th>
                     <th>Acciones</th>
                 </tr>
-                <%bddConductores[id].autos.forEach((auto)=>{%>
+                <%bddConductores[id].autos.forEach((auto, index)=>{%>
                 <tr>
-                    <th><%=auto.id%></th>
                     <th><%=auto.chasis%></th>
                     <th><%=auto.nombreMarca%></th>
                     <th><%=auto.colorUno%></th>
@@ -45,7 +43,9 @@
                     <th><%=auto.anio%></th>
                     <th><%=auto.idConductor%></th>
                     <th>
-                        <button>Borrar</button>
+                        <form action="/api/borrar/auto/<%=id%>/<%=index%>" method="POST">
+                            <button>Borrar</button>
+                        </form>
                     </th>
                 </tr>
                 <%})%>
