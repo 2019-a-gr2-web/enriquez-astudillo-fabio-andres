@@ -66,7 +66,7 @@ export class AppController {
 
 
 /*
-/********************************************************************************************
+
 // 1) Impriman en consola todos los elementos
 
 const arregloNumerosForEach = [1, 2, 3, 4, 5, 6];
@@ -240,7 +240,7 @@ arregloEj
 
 
     // @Controller(segmentoAccion)
-    /* @Get('/hello-world')  // METODO HTTP
+     @Get('/hello-world')  // METODO HTTP
     helloWorld(): string {
         return 'Hello world';
     }
@@ -273,8 +273,6 @@ arregloEj
         } else {
             return ':(';
         }
-
-
     }
 
     // ?llave=valor&llave2=valor2

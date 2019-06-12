@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Crear Conductor</title>
+</head>
+<body>
+    <div>
+        <span><%=Nombre%></span>
+        <form action="/api/login" method="POST">
+            <button>Salir</button>
+        </form>
+    </div>
+    <div>
+        <form action="/api/conductores/gestionar/crear" method="POST">
+        
+        <label for="nombres">Nombres</label>
+        <input type="text" id="nombres" name="nombres">
+
+        <label for="apellidos">Apellidos</label>
+        <input type="text" id="apellidos" name="apellidos">
+
+        <label for="fechaNac">Fecha de Nacimiento</label>
+        <input type="Date" id="fechaNac" name="fechaNac">
+
+        <label for="licVal">Licencia Válida</label>
+        <input type="checkbox" id="licVal" name="licVal">
+
+        <button>Confirmar</button>
+    
+        </form>
+
+        <form action="/api/conductores/gestionar" method="GET">
+            <button>Cancelar</button>
+        </form>
+
+    </div>
+    
+</body>
+</html>
