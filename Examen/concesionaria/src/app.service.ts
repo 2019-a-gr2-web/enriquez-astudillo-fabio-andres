@@ -21,13 +21,12 @@ export class AppService {
     return conductor1;
   }
 
-  getNombre(@Request() req) {
+  getNombre(@Request() req, @Response() res) {
     const cookie = req.signedCookies.Nombre;
     if (cookie) {
       return cookie;
     } else {
-      console.log('Cookie no válida');
-      // codigo para volvera al login
+      res.redirect('/api/login');
     }
   }
 

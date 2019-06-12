@@ -15,8 +15,12 @@
             <a href="/api/conductores/gestionar"><button>Regresar</button></a>
         </div>
         <div>
-            <!-- Buscar
-            Botón Buscar-->
+            <form action="/api/buscar/auto/<%=id%>" method="POST">
+                <label for="buscar"></label>
+                <input type="text" id="buscar" name="buscar">
+                <button>Buscar</button>
+            </form>
+            
             <form action="/api/conductores/gestionar/autos/<%=id%>/crear" method="GET">
                 <button>Crear</button>
             </form>
@@ -33,23 +37,43 @@
                     <th>id Conductor</th>
                     <th>Acciones</th>
                 </tr>
-                <%bddConductores[id].autos.forEach((auto, index)=>{%>
-                <tr>
-                    <th><%=auto.chasis%></th>
-                    <th><%=auto.nombreMarca%></th>
-                    <th><%=auto.colorUno%></th>
-                    <th><%=auto.colorDos%></th>
-                    <th><%=auto.nombreModelo%></th>
-                    <th><%=auto.anio%></th>
-                    <th><%=auto.idConductor%></th>
-                    <th>
-                        <form action="/api/borrar/auto/<%=id%>/<%=index%>" method="POST">
-                            <button>Borrar</button>
-                        </form>
-                    </th>
-                </tr>
-                <%})%>
-    
+                <%if(bool) {%>
+                    <%bddConductores[id].autos.forEach((auto, index)=>{%>
+                    <tr>
+                        <th><%=auto.chasis%></th>
+                        <th><%=auto.nombreMarca%></th>
+                        <th><%=auto.colorUno%></th>
+                        <th><%=auto.colorDos%></th>
+                        <th><%=auto.nombreModelo%></th>
+                        <th><%=auto.anio%></th>
+                        <th><%=auto.idConductor%></th>
+                        <th>
+                            <form action="/api/borrar/auto/<%=id%>/<%=index%>" method="POST">
+                                <button>Borrar</button>
+                            </form>
+                        </th>
+                    </tr>
+                    <%})%>
+                <%} else {%>
+                    <%bddConductores[id].autos.forEach((auto, index)=>{%>
+                        <%if(auto.nombreMarca == marca) {%>
+                            <tr>
+                                <th><%=auto.chasis%></th>
+                                <th><%=auto.nombreMarca%></th>
+                                <th><%=auto.colorUno%></th>
+                                <th><%=auto.colorDos%></th>
+                                <th><%=auto.nombreModelo%></th>
+                                <th><%=auto.anio%></th>
+                                <th><%=auto.idConductor%></th>
+                                <th>
+                                    <form action="/api/borrar/auto/<%=id%>/<%=index%>" method="POST">
+                                        <button>Borrar</button>
+                                    </form>
+                                </th>
+                            </tr>
+                        <%}%>
+                    <%})%>
+                <%}%>
             </table>
         </div>
 </body>

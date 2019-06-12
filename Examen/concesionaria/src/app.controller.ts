@@ -19,7 +19,7 @@ export class AppController {
 
   @Get('/conductores')
   getConductores(@Response() res, @Request() req){
-    const Nombre:String = this.appService.getNombre(req);
+    const Nombre:String = this.appService.getNombre(req, res);
     return res.render('conductores',{Nombre:Nombre});
   }
 
@@ -31,7 +31,7 @@ export class AppController {
 
   @Get('/conductores/gestionar')
   getGestionar(@Response() res, @Request() req){
-    const Nombre:String = this.appService.getNombre(req);
+    const Nombre:String = this.appService.getNombre(req, res);
 
     return res.render('gestionar',{
                                       Nombre:Nombre,
@@ -42,7 +42,7 @@ export class AppController {
 
   @Get('/conductores/gestionar/crear')
   getCrear(@Response() res, @Request() req){
-    const Nombre:String = this.appService.getNombre(req);
+    const Nombre:String = this.appService.getNombre(req, res);
     return res.render('crear',{
                                 Nombre:Nombre,
                                 bddConductores:this.appService.bddConductores
@@ -63,17 +63,18 @@ export class AppController {
 
   @Get('/conductores/gestionar/autos/:id')
   getGestionarAutos(@Param() Param, @Response() res, @Request() req){
-    const Nombre:String = this.appService.getNombre(req);
+    const Nombre:String = this.appService.getNombre(req, res);
     return res.render('autos',{
                                 Nombre:Nombre,
                                 bddConductores:this.appService.bddConductores,
-                                id:Param.id
+                                id:Param.id,
+                                bool:true
                               });
   }
 
   @Get('/conductores/gestionar/autos/:id/crear')
   getCrearAuto(@Param() Param, @Response() res, @Request() req){
-    const Nombre:String = this.appService.getNombre(req);
+    const Nombre:String = this.appService.getNombre(req, res);
     return res.render('crearAutos',{
                                 Nombre:Nombre,
                                 bddConductores:this.appService.bddConductores,
@@ -109,7 +110,7 @@ export class AppController {
 
   @Post('/buscar/auto')
   PostBuscarAuto(@Body('buscar') buscar: string, @Response() res, @Request() req){
-    const Nombre:String = this.appService.getNombre(req);
+    const Nombre:String = this.appService.getNombre(req, res);
     return res.render('gestionar',{
                                     bool:false,
                                     nombre:buscar,
@@ -117,6 +118,19 @@ export class AppController {
                                     bddConductores:this.appService.bddConductores
 
                                   })
+  }
+
+  
+  @Post('/buscar/auto/:id')
+  buscarAutos(@Param() Param, @Response() res, @Request() req, @Body('buscar') marca2){
+    const Nombre:String = this.appService.getNombre(req, res);
+    return res.render('autos',{
+                                Nombre:Nombre,
+                                bddConductores:this.appService.bddConductores,
+                                id:Param.id,
+                                bool:false,
+                                marca:marca2
+                              });
   }
 
   

@@ -2,9 +2,23 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TragosModule } from './tragos/tragos.modules';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
-  imports: [TragosModule],
+  imports: [
+    TragosModule,
+    TypeOrmModule.forRoot({
+      type: 'mysql',
+      host: 'localhost',
+      port: 3306,
+      username: 'root',
+      password: 'password',
+      database: 'test',
+      entities: [__dirname + '/**/*.entity{.ts,.js}'],
+      synchronize: true,
+      insecureAuth:true
+    }),
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
