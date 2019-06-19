@@ -1,6 +1,8 @@
 import {Controller, Get, Response, Post, Body} from "@nestjs/common";
 import {TragosService} from "./tragos.service";
 import { Trago } from "./interfaces/Trago";
+import { TragosCreateDto } from "./dto/tragos.update.dto";
+import { validate } from "class-validator";
 
 @Controller('/api/traguito')
 export class TragosController {
@@ -37,11 +39,31 @@ export class TragosController {
         trago.fechaCaducidad = new Date(trago.fechaCaducidad);
         //console.log(trago);
 
+        let tragoAValidar = new TragosCreateDto();
+
+        tragoAValidar.nombre = trago.nombre;
+        tragoAValidar.tipo = trago.tipo;
+        tragoAValidar.fechaCaducidad = trago.fechaCaducidad = trago.fechaCaducidad ? new Date(trago.fechaCaducidad) : undefined;
+        tragoAValidar.precio = trago.precio;
+        tragoAValidar.gradosAlcohol = trago.gradosAlcohol;
+
         try {
-            const respuestaCrear = await this._tragosService.crear(trago);
-            console.log('Respuesta: ',respuestaCrear);
-            
-            res.redirect('/api/traguito/lista')
+
+            const errores = await validate(tragoAValidar);
+
+            if (errores.length > 0) {
+                console.error(errores);
+                res.status(400);
+                res.send({mensaje: 'Error', codigo: 400});
+            } else {
+
+                const respuestaCrear = await this._tragosService
+                    .crear(trago); // Promesa
+
+                console.log('RESPUESTA: ', respuestaCrear);
+
+                res.redirect('/api/traguito/lista');
+            }
         }
         catch(e){
             console.error(e)

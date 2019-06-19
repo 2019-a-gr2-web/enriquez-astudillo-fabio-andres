@@ -20,7 +20,7 @@ export class TragosEntity {
         length: 10,
         name: 'tipo_trago',
     })
-    tipo: 'Ron'|'Vodka'|'Whiskey'|'Tequila'|'Puntas'|'Cerveza';
+    tipo: 'Ron'|'Vodka'|'Wisky'|'Tequila'|'Puntas'|'Cerveza';
 
     @Column({
         type: 'int',
@@ -31,6 +31,7 @@ export class TragosEntity {
     @Column({
         type: 'date',
         name: 'fecha_caducidad',
+        default: '2019-06-19',
     })
     fechaCaducidad: Date;
 
