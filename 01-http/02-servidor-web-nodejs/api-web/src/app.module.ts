@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import {TragosModule} from "./tragos/tragos.modules";
+import {TragosModule} from "./tragos/tragos.module";
 import { TypeOrmModule } from '@nestjs/typeorm';
 import {TragosEntity} from "./tragos/tragos.entity";
 import {DistribuidorModule} from "./distribuidor/distribuidor.module";
