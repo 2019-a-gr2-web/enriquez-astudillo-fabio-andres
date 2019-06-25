@@ -1,12 +1,19 @@
-import { DistribuidorEntity } from "src/distribuidor/distribuidor.entity";
+import {Column, PrimaryGeneratedColumn} from "typeorm";
+import {DistribuidorEntity} from "../../distribuidor/distribuidor.entity";
 
-export class TragosCreateDto {
+export class TragosUpdateDto {
+
     id:number;
-    nombre:string;
-    tipo: 'Ron'|'Vodka'|'Wisky'|'Tequila'|'Puntas'|'Cerveza';
-    gradosAlcohol:number;
-    precio:number;
-    distribuidorId: DistribuidorEntity;
+
+    nombre: string;
+
+    tipo: 'Ron'|'Vodka'|'Whiskey'|'Tequila'|'Puntas'|'Cerveza';
+
+    gradosAlcohol: number;
+
     fechaCaducidad: Date;
 
+    precio: number;
+
+    distribuidorId: DistribuidorEntity;
 }
