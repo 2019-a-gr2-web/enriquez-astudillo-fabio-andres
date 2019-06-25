@@ -1,4 +1,4 @@
-import {IsDate, IsEmpty, IsNotEmpty, IsNumber, IsString, IsOptional} from "class-validator";
+import {IsDate, IsEmpty, IsNotEmpty, IsNumber, IsOptional, IsString} from "class-validator";
 
 export class TragosCreateDto {
 
@@ -17,13 +17,15 @@ export class TragosCreateDto {
     @IsNumber()
     gradosAlcohol: number;
 
-    @IsDate()
     @IsOptional()
+    @IsDate()
     fechaCaducidad: Date;
 
     @IsNumber()
+    @IsOptional()
     precio: number;
 
     @IsNumber()
+    @IsOptional()
     distribuidorId: number;
 }

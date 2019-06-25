@@ -1,60 +1,78 @@
-import {Controller, Get, Response, Post, Body} from "@nestjs/common";
+import {Controller, Get, Post, Res, Body, Query} from "@nestjs/common";
 import {TragosService} from "./tragos.service";
-import { Trago } from "./interfaces/Trago";
-import { TragosCreateDto } from "./dto/tragos.update.dto";
-import { validate } from "class-validator";
+import {Trago} from "./interfaces/trago";
+import {validate} from "class-validator";
+import {TragosCreateDto} from "./dto/tragos.create.dto";
 
 @Controller('/api/traguito')
 export class TragosController {
-    constructor(private readonly _tragosService:TragosService) {
-        
+
+    constructor(private readonly _tragosService: TragosService) {
+
     }
 
     @Get('lista')
-    async listarTragos(@Response() res){
+    async listarTragos(
+        @Res() res
+    ) {
         const arregloTragos = await this._tragosService.buscar();
-        res.render('tragos/lista-tragos',
-        {
-            arregloTragos:arregloTragos
+
+
+        res.render('tragos/lista-tragos', {
+            arregloTragos: arregloTragos
         })
     }
 
     @Get('crear')
-    crearTragos(@Response() res){
-        res.render('tragos/crear-editar')
+    crearTrago(
+        @Res() res,
+        @Query('mensaje') mensaje:string,
+    ) {
+
+        res.render(
+            'tragos/crear-editar',{
+                mensaje: mensaje
+            }
+        )
     }
 
     @Post('crear')
     async crearTragoPost(
-        @Body() trago:Trago,
-        @Body('nombre') nombre:string,
-        @Body('tipo') tipo:string,
-        @Body('gradosAlcohol') gradosAlcohol:number,
-        @Body('fechaCaducidad') fechaCaducidad:Date,
-        @Body('precio') precio:number,
-        @Response() res
-    ){
+        @Body() trago: Trago,
+        @Res() res,
+        // @Body('nombre') nombre:string,
+        // @Body('tipo') tipo:string,
+        // @Body('gradosAlcohol') gradosAlcohol:number,
+        // @Body('fechaCaducidad') fechaCaducidad:Date,
+        // @Body('precio') precio:number,
+    ) {
         trago.gradosAlcohol = Number(trago.gradosAlcohol);
         trago.precio = Number(trago.precio);
-        trago.fechaCaducidad = new Date(trago.fechaCaducidad);
-        //console.log(trago);
+
+
+        trago.fechaCaducidad = trago.fechaCaducidad ? new Date(trago.fechaCaducidad) : undefined;
+
 
         let tragoAValidar = new TragosCreateDto();
 
         tragoAValidar.nombre = trago.nombre;
         tragoAValidar.tipo = trago.tipo;
-        tragoAValidar.fechaCaducidad = trago.fechaCaducidad = trago.fechaCaducidad ? new Date(trago.fechaCaducidad) : undefined;
+        tragoAValidar.fechaCaducidad = trago.fechaCaducidad;
         tragoAValidar.precio = trago.precio;
         tragoAValidar.gradosAlcohol = trago.gradosAlcohol;
 
         try {
 
             const errores = await validate(tragoAValidar);
-
+            console.log(errores);
+            console.log(tragoAValidar);
+            console.log(trago);
             if (errores.length > 0) {
+
                 console.error(errores);
-                res.status(400);
-                res.send({mensaje: 'Error', codigo: 400});
+                res.redirect('/api/traguito/crear?mensaje=Tienes un error en el formulario');
+
+
             } else {
 
                 const respuestaCrear = await this._tragosService
@@ -65,15 +83,12 @@ export class TragosController {
                 res.redirect('/api/traguito/lista');
             }
         }
-        catch(e){
-            console.error(e)
+        catch (e) {
+            console.error(e);
             res.status(500);
-            res.send({
-                mensaje:'Error',
-                codigo:500
-            })
+            res.send({mensaje: 'Error', codigo: 500});
         }
-       
+
 
         // console.log('Trago: ', trago, typeof trago);
         // console.log('Nombre: ', nombre, typeof nombre);
@@ -83,12 +98,5 @@ export class TragosController {
         // console.log('Precio: ', precio, typeof precio);
 
     }
-
-    @Post('eliminar')
-    eliminarTragoPost(@Body() id:number){
-        this._tragosService.eliminar(id);
-    }
-
-    
 
 }

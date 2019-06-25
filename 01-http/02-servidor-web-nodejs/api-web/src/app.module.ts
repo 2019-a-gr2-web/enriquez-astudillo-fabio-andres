@@ -28,7 +28,8 @@ import {FiestaModule} from "./fiesta/fiesta.module";
               FiestaEntity
           ],
           synchronize: true,
-          insecureAuth : true
+          insecureAuth : true,
+          dropSchema: false
       }),
   ], // Modulos
   controllers: [AppController],
