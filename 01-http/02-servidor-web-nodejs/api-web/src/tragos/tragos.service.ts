@@ -24,22 +24,22 @@ export class TragosService {
         const objetoEntidad = this._tragosRepository.create(traguito);
 
 
-        console.log('LINEA 1');
+        // console.log('LINEA 1');
         this._tragosRepository
-            .save(objetoEntidad) // Promesa
-            .then(
-                (datos)=>{
-                    console.log('LINEA 2');
-                    // console.log('Dato creado:', datos);
-                }
-            )
-            .catch(
-                (error)=>{
-                    console.log('LINEA 3');
-                    // console.error('Error:', error);
-                }
-            );
-        console.log('LINEA 4');
+             .save(objetoEntidad) // Promesa
+        //     .then(
+        //         (datos)=>{
+        //             console.log('LINEA 2');
+        //             // console.log('Dato creado:', datos);
+        //         }
+        //     )
+        //     .catch(
+        //         (error)=>{
+        //             console.log('LINEA 3');
+        //             // console.error('Error:', error);
+        //         }
+        //     );
+        // console.log('LINEA 4');
 
 
 
