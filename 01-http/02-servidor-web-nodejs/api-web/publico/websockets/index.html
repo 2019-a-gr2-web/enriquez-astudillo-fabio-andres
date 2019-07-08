@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Websockets</title>
+</head>
+<body>
+    <!-- <script src="socket.io.js"></script> -->
+    <script src="/websockets/socket.io.js"></script>
+    <script>
+        const url = 'http://localhost:3001/websockets';
+        const socket = io(url)
+        console.log('Ya mismito nos conectamos :D')
+        socket.on(
+            //'connect',
+            ()=>{
+                console.log('Estamos conectados!!'); 
+                socket.disconnect()
+                setTimeout(
+                    ()=>{
+                        socket.connect();
+                    },3000
+                )  
+            }
+        );
+        function particionHolaMundo() {
+            console.log(data)
+            console.log('Nos hafcen la peticion')
+            return 'Hola Mundo';
+        }
+    </script>
+
+</body>
+</html>

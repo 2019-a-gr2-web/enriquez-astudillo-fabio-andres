@@ -16,11 +16,11 @@ export class MedicoEntity {
 
     @Column({
         type: "varchar",
-        length: 15,
-        name: 'med_apellido'
+        length: 20,
+        name: 'med_esp'
     })
-    apellido: string;
-
+    especialidad: string;
+    
     @Column({
         type: "varchar",
         length: 3,

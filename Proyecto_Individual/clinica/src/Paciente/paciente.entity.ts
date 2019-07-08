@@ -16,13 +16,6 @@ export class PacienteEntity {
 
     @Column({
         type: "varchar",
-        length: 15,
-        name: 'pac_apellido'
-    })
-    apellido: string;
-
-    @Column({
-        type: "varchar",
         length: 100,
         name: 'pac_alergias'
     })
@@ -32,7 +25,7 @@ export class PacienteEntity {
         type: "date",
         name: 'pac_fechNac'
     })
-    fechNac: Date;
+    fechaNac: Date;
 
     @OneToMany(type => CitaEntity, cita => cita.paciente)
     citas: CitaEntity[];

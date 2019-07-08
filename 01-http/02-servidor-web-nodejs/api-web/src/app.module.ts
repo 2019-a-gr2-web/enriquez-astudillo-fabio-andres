@@ -8,13 +8,15 @@ import {DistribuidorModule} from "./distribuidor/distribuidor.module";
 import {DistribuidorEntity} from "./distribuidor/distribuidor.entity";
 import {FiestaEntity} from "./fiesta/fiesta.entity";
 import {FiestaModule} from "./fiesta/fiesta.module";
+import { ChatModule } from './chat/chat.module';
 
 @Module({
   imports: [
       TragosModule,
       DistribuidorModule,
       FiestaModule,
-      TypeOrmModule.forRoot({
+      ChatModule,
+        TypeOrmModule.forRoot({
           name: 'default', // Nombre cadena conex por defecto de TYPEORM
           type: 'mysql',
           host: 'localhost',

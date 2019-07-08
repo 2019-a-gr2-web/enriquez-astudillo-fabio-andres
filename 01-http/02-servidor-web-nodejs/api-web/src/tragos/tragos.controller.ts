@@ -1,4 +1,4 @@
-import {Controller, Get, Post, Res, Body, Query} from "@nestjs/common";
+import {Controller, Get, Post, Res, Body, Query, Delete, Param, Put} from "@nestjs/common";
 import {TragosService} from "./tragos.service";
 import {Trago} from "./interfaces/trago";
 import {validate} from "class-validator";
@@ -89,7 +89,6 @@ export class TragosController {
             res.send({mensaje: 'Error', codigo: 500});
         }
 
-
         // console.log('Trago: ', trago, typeof trago);
         // console.log('Nombre: ', nombre, typeof nombre);
         // console.log('Tipo: ', tipo, typeof tipo);
@@ -97,6 +96,45 @@ export class TragosController {
         // console.log('FechaCaducidad: ', fechaCaducidad, typeof fechaCaducidad);
         // console.log('Precio: ', precio, typeof precio);
 
+        
     }
+        
+        @Delete('eliminar/:id')
+        async eliminarTrago(
+            @Res() res,
+            @Param() param,
+        ){
+            
+            try{
+                const idP:Number = Number(param.id)
+                const resEliminar = await this._tragosService.eliminar({id:idP})
+                res.redirect('/api/traguito/lista')
+            }catch(e){
+                console.error(e);
+                res.status(500);
+                res.send({mensaje:'Error',codigo:500});
+            }
+        }
+    
+        @Put('actualizar/:id')
+        async actualizar(
+            @Param() param,
+            @Body() trago: Trago,
+            @Res() res
+        ){
+            trago.fechaCaducidad = new Date(trago.fechaCaducidad);
+            trago.gradosAlcohol = Number(trago.gradosAlcohol);
+            trago.precio = Number(trago.precio);
+
+            try{
+                const idP:Number = Number(param.id)
+                const resActualizar = await this._tragosService.actualizar(trago,{id:idP})
+                res.redirect('/api/traguito/lista')
+            }catch(e){
+                console.error(e);
+                res.status(500);
+                res.send({mensaje:'Error',codigo:500});
+            }
+        }
 
 }
