@@ -14,12 +14,6 @@ export class CitaEntity {
     })
     fecha: Date;
 
-    @Column({
-        type: 'time',
-        name: 'cita_hora'
-    })
-    hora: Date;
-
     @ManyToOne(type => PacienteEntity, paciente => paciente.citas)
     paciente: PacienteEntity;
 

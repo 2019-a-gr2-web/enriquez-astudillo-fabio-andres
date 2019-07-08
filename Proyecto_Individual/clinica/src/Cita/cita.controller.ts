@@ -3,13 +3,15 @@ import { CitaService } from "./cita.service";
 import { PacienteService } from "src/Paciente/paciente.service";
 import { MedicoService } from "src/Medico/medico.service";
 import { Cita } from "./cita";
+import { MedicoEntity } from "src/Medico/medico.entity";
+import { PacienteEntity } from "src/Paciente/paciente.entity";
 
 @Controller('/clinica/citas')
-export class CitaController {}
-/*    constructor(
+export class CitaController {
+    constructor(
         private readonly _citaService:CitaService,
         private readonly _pacienteService:PacienteService,
-        private readonly _medicoService:MedicoService
+        private readonly _medicoService:MedicoService,
     ) {}
 
     @Post('crear') 
@@ -17,19 +19,17 @@ export class CitaController {}
         @Body('paciente') paciente:string,
         @Body('medico') medico:string,
         @Body('fecha') fecha:Date,
-        @Body('hora') hora:Date,
         @Res() res
     ){
         fecha = new Date(fecha);
-        hora = new Date(hora);
-        let _paciente = this._pacienteService.buscar({id:paciente})
-        let _medico = this._medicoService.buscar({nombre:medico})
+        
+        let _medico:MedicoEntity[] = await this._medicoService.buscar({nombre:medico})
+        let _paciente:PacienteEntity[] = await this._pacienteService.buscar({nombre:paciente})
 
         const cita:Cita = {
             paciente:_paciente[0],
             medico:_medico[0],
-            fecha:fecha,
-            hora:hora
+            fecha:fecha
         }
 
         try{
@@ -78,20 +78,17 @@ export class CitaController {}
         @Body('paciente') paciente:string,
         @Body('medico') medico:string,
         @Body('fecha') fecha:Date,
-        @Body('hora') hora:Date,
         @Res() res
     ){
         fecha = new Date(fecha);
-        hora = new Date(hora);
-        let _paciente = this._pacienteService.buscar({id:paciente})
-        let _medico = this._medicoService.buscar({nombre:medico})
+        let _paciente = await this._pacienteService.buscar({id:paciente})
+        let _medico = await this._medicoService.buscar({nombre:medico})
 
         try{
             const cita:Cita = {
                 paciente:_paciente[0],
                 medico:_medico[0],
-                fecha:fecha,
-                hora:hora
+                fecha:fecha
             }
             const idP:Number = Number(param.id)
             const resActualizar = await this._citaService.actualizar(cita,{id:idP})
@@ -103,4 +100,4 @@ export class CitaController {}
         }
         
     }
-}*/
+}

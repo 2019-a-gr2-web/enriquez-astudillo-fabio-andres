@@ -12,6 +12,7 @@ export class CitaService {
     ){}
 
     crear(nuevaCita: Cita):Promise<Cita> {
+        
         const objetoEntidad = this._citaRepository.create(nuevaCita)
         return this._citaRepository.save(objetoEntidad);
     }

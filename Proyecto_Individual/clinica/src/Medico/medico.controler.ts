@@ -2,7 +2,7 @@ import { Controller, Post, Body, Res, Get, Query, Delete, Param, Put } from "@ne
 import { MedicoService } from "./medico.service";
 import { Medico } from "./medico";
 
-@Controller('/cinica/medicos')
+@Controller('/clinica/medicos')
 export class MedicoController {
     constructor(
         private readonly _medicoService:MedicoService
