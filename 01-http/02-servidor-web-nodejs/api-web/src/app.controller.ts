@@ -11,12 +11,19 @@ import {
     Param,
     Body,
     Request,
-    Response
+    Response,
+    Session, 
+    Res,
+    Render,
+    UseInterceptors,
+    UploadedFile,
+    UploadedFiles
 } from '@nestjs/common';
 import {AppService} from './app.service';
 
 
 import * as Joi from '@hapi/joi';
+import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 
 // const Joi = require('@hapi/joi');
 
@@ -58,8 +65,98 @@ export class AppController {
         return res.render('peliculas/estilos');
     }
     
-    
+    @Get('session')
+    session(
+        @Query('nombre') nombre,
+        @Session() session
+    ){
+        session.autenticado=true;
+        session.nombreUsuario = nombre;
+        console.log(session);
+        return 'ok';
+    }
 
+    @Get('login')
+    loginVista(@Res() res){
+        res.render('login');
+    }
+
+    @Post('login')
+    login(
+        @Body() usuario,
+        @Res() res,
+        @Session() session
+    ){
+        if(usuario.username === 'Fabio' && usuario.password === '12345678'){
+            session.username = usuario.username;
+            res.redirect('/api/protegida')
+        }else{
+            res.status(400)
+            res.send({mensaje:'Error login',error:400})
+        }
+    }
+
+    @Get('protegida')
+    protegida(
+        @Session() session,
+        @Res() res
+    ){
+        if(session.username){
+            res.render('protegida',{
+                nombre:session.username});
+        }else{
+            res.redirect('/api/login');
+        }
+    }
+
+    @Get('logout')
+    logout(
+        @Res() res,
+        @Session() session,
+    ){
+        session.username = undefined;
+        session.destroy();
+        res.redirect('/api/login');
+    }
+
+    @Get('subirArchivo/:idTrago')
+    @Render('archivo')
+    subirArchivo(
+        @Res() res,
+        @Param('idTrago') idTrago
+    ) {
+        return{
+            idTrago: idTrago
+        };
+    }
+
+    @Post('subirArchivo/:idTrago')
+    @UseInterceptors(
+        FilesInterceptor(
+            'imagen',2,
+            {
+                dest: __dirname + '/../archivos'
+            }
+        )
+    )
+    subirArchivoPost(
+        @Param('idTrago') idTrago,
+        @UploadedFiles() archivo
+    ){
+        console.log(archivo);
+        return { mensaje: 'ok' };
+    }
+
+    @Get('descargarArchivo/:idTrago')
+    descargarArchivo(
+        @Res() res,
+        @Param('idTrago') idTrago
+    ){
+        const originalnamae = 'Mario.jpg';
+        const path = 'C:\\Users\\fabio_4ao98x3\\Documents\\GitHub\\enriquez-astudillo-fabio-andres\\01-http\\02-servidor-web-nodejs\\api-web\\archivos\\9d17b2278eedaef8fc8a6b50ee7a4ec2'
+        res.download(path, originalnamae);
+    }
+    
 }
 
 

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Websockets</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<body>
+
+
+<h1 id="titulo">Mi patito nadadea en...</h1>
+
+<div id="contenedor-chat">
+</div>
+
+<label for="chat-texto">Texto</label>
+<input id="chat-texto" type="text">
+
+<button onclick="enviarMensaje()">Anadir chat</button>
+
+
+<script>
+    
+    function enviarMensaje() {
+        
+        const chatTexto = document.getElementById('chat-texto');
+        const texto = chatTexto.value;
+        const nombreEtiquetaHTMLChat = "p";
+        const parrafo = document
+            .createElement(nombreEtiquetaHTMLChat);
+        const contenidoHTML = `
+        <div class="alert alert-primary text-right" role="alert">
+          ${texto}
+        </div>
+        `;
+        parrafo.innerHTML = contenidoHTML;
+        const idContenedor = 'contenedor-chat';
+        anadirEtiqueta(idContenedor, parrafo);
+
+        peticionJuego(texto);
+
+        chatTexto.value = "";
+        chatTexto.focus();
+    }
+    
+    function anadirEtiqueta(idEtiqueta, elementoHTML) {
+        const etiqueta = document.getElementById(idEtiqueta);
+        etiqueta.appendChild(elementoHTML);
+    }
+</script>
+
+<script src="/websockets/socket.io.js"></script>
+<script>
+    const url = 'http://localhost:3001/websockets';
+    const socket = io(url);
+    socket.on(
+        'connect',
+        () => {
+            console.log('Conectado');
+        }
+    );
+    socket.on(
+        'disconnect',
+        () => {
+            console.log('Desconectado');
+        }
+    );
+
+    socket.on(
+        'respuesta',
+        (data) => {
+            const nombreContenedor = 'contenedor-chat';
+            const nombreEtiqueta= 'p';
+            const parrafo = document
+                 .createElement(nombreEtiqueta);
+            const HTMLParrafo = `
+            <div class="alert alert-secondary" role="alert">
+              ${data.nombre}
+            </div>
+            `;
+            parrafo.innerHTML = HTMLParrafo;
+            anadirEtiqueta(nombreContenedor,parrafo);
+        }
+    );
+
+    function peticionJuego(texto) {
+        const nombreMetodo = 'juego';
+        const datos = {
+            nombre: texto
+        };
+        socket.emit(
+            nombreMetodo,
+            datos,
+            (respuesta) => { //calback
+                console.log(respuesta);
+            }
+        );
+    }
+</script>
+
+</body>
+</html>

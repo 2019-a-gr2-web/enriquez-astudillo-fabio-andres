@@ -21,25 +21,22 @@ export class TragosService {
             tipo:'Cerveza'
         };
 
-        const objetoEntidad = this._tragosRepository.create(traguito);
-
-
-        console.log('LINEA 1');
-        this._tragosRepository
-            .save(objetoEntidad) // Promesa
-            .then(
-                (datos)=>{
-                    console.log('LINEA 2');
-                    // console.log('Dato creado:', datos);
-                }
-            )
-            .catch(
-                (error)=>{
-                    console.log('LINEA 3');
-                    // console.error('Error:', error);
-                }
-            );
-        console.log('LINEA 4');
+        // console.log('LINEA 1');
+        //this._tragosRepository
+        //     .save(objetoEntidad) // Promesa
+        //     .then(
+        //         (datos)=>{
+        //             console.log('LINEA 2');
+        //             // console.log('Dato creado:', datos);
+        //         }
+        //     )
+        //     .catch(
+        //         (error)=>{
+        //             console.log('LINEA 3');
+        //             // console.error('Error:', error);
+        //         }
+        //     );
+        // console.log('LINEA 4');
 
 
 
@@ -67,43 +64,52 @@ export class TragosService {
         return this._tragosRepository.save(objetoEntidad);
     }
 
-    buscarPorId(id: number):Trago {
-        return this.bddTragos.find(
-            (trago) => {
-                return trago.id === id;
-            }
-        );
+
+    eliminar(parametros){
+        this._tragosRepository.delete(parametros)
     }
 
-    buscarPorNombre(nombre: string):Trago {
-        return this.bddTragos.find(
-            (trago) => {
-                return trago.nombre.toUpperCase().includes(nombre.toUpperCase());
-            }
-        );
+    actualizar(nuevoTrago: Trago, parametros){
+        this._tragosRepository.update(parametros,nuevoTrago)
     }
 
-    eliminarPorId(id: number):Trago[] {
-        const indice = this.bddTragos.findIndex(
-            (trago) => {
-                return trago.id === id
-            }
-        );
-        this.bddTragos.splice(indice,1);
-        return this.bddTragos;
-    }
+    // buscarPorId(id: number):Trago {
+    //     return this.bddTragos.find(
+    //         (trago) => {
+    //             return trago.id === id;
+    //         }
+    //     );
+    // }
 
-    actualizar(tragoActualizado: Trago, id:number):Trago[] {
+    // buscarPorNombre(nombre: string):Trago {
+    //     return this.bddTragos.find(
+    //         (trago) => {
+    //             return trago.nombre.toUpperCase().includes(nombre.toUpperCase());
+    //         }
+    //     );
+    // }
 
-        const indice = this.bddTragos.findIndex(
-            (trago) => {
-                return trago.id === id
-            }
-        );
-        tragoActualizado.id = this.bddTragos[indice].id;
-        this.bddTragos[indice] = tragoActualizado;
+    // eliminarPorId(id: number):Trago[] {
+    //     const indice = this.bddTragos.findIndex(
+    //         (trago) => {
+    //             return trago.id === id
+    //         }
+    //     );
+    //     this.bddTragos.splice(indice,1);
+    //     return this.bddTragos;
+    // }
 
-        return this.bddTragos;
-    }
+    // actualizar(tragoActualizado: Trago, id:number):Trago[] {
+
+    //     const indice = this.bddTragos.findIndex(
+    //         (trago) => {
+    //             return trago.id === id
+    //         }
+    //     );
+    //     tragoActualizado.id = this.bddTragos[indice].id;
+    //     this.bddTragos[indice] = tragoActualizado;
+
+    //     return this.bddTragos;
+    // }
 
 }
