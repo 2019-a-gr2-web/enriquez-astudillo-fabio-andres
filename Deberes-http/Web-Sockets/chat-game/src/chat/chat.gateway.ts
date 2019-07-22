@@ -16,12 +16,15 @@ export class ChatGateway {
         console.log(this.server);
     }
 
-    @SubscribeMessage('holaMundo')
-    holaMundo(client: Client | any, data: any){
-        console.log(data);
-        console.log('Nos hacen la peticion');
-        console.log(this.server);
-        client.broadcast.emit('saludaron',data);
+    @SubscribeMessage('juego')
+    juego(client: Client | any, data: any){
+        //console.log(data)
+        const nombre:String = data.nombre.toUpperCase()
+        if(nombre.includes('A')){
+            client.emit('respuesta',{nombre: 'Te equivocaste, toma!!!'}); 
+        } else {
+            client.emit('respuesta',{nombre: 'Correcto, pasa al siguiente'}); 
+        }
         return 'Hola '+ data.nombre;
     }
 }

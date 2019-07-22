@@ -13,12 +13,17 @@ import {
     Request,
     Response,
     Session, 
-    Res
+    Res,
+    Render,
+    UseInterceptors,
+    UploadedFile,
+    UploadedFiles
 } from '@nestjs/common';
 import {AppService} from './app.service';
 
 
 import * as Joi from '@hapi/joi';
+import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 
 // const Joi = require('@hapi/joi');
 
@@ -114,6 +119,43 @@ export class AppController {
         res.redirect('/api/login');
     }
 
+    @Get('subirArchivo/:idTrago')
+    @Render('archivo')
+    subirArchivo(
+        @Res() res,
+        @Param('idTrago') idTrago
+    ) {
+        return{
+            idTrago: idTrago
+        };
+    }
+
+    @Post('subirArchivo/:idTrago')
+    @UseInterceptors(
+        FilesInterceptor(
+            'imagen',2,
+            {
+                dest: __dirname + '/../archivos'
+            }
+        )
+    )
+    subirArchivoPost(
+        @Param('idTrago') idTrago,
+        @UploadedFiles() archivo
+    ){
+        console.log(archivo);
+        return { mensaje: 'ok' };
+    }
+
+    @Get('descargarArchivo/:idTrago')
+    descargarArchivo(
+        @Res() res,
+        @Param('idTrago') idTrago
+    ){
+        const originalnamae = 'Mario.jpg';
+        const path = 'C:\\Users\\fabio_4ao98x3\\Documents\\GitHub\\enriquez-astudillo-fabio-andres\\01-http\\02-servidor-web-nodejs\\api-web\\archivos\\9d17b2278eedaef8fc8a6b50ee7a4ec2'
+        res.download(path, originalnamae);
+    }
     
 }
 

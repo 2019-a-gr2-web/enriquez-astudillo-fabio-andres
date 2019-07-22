@@ -12,11 +12,11 @@ import { ChatModule } from './chat/chat.module';
 
 @Module({
   imports: [
-      TragosModule,
-      DistribuidorModule,
-      FiestaModule,
+      //TragosModule,
+      //DistribuidorModule,
+      //FiestaModule,
       ChatModule,
-        TypeOrmModule.forRoot({
+        /*TypeOrmModule.forRoot({
           name: 'default', // Nombre cadena conex por defecto de TYPEORM
           type: 'mysql',
           host: 'localhost',
@@ -33,7 +33,7 @@ import { ChatModule } from './chat/chat.module';
           insecureAuth : true,
           dropSchema: false
       }),
-  ], // Modulos
+    */], // Modulos
   controllers: [AppController],
   providers: [AppService],
 })

@@ -10,13 +10,9 @@
 <body>
 
 
-<h1 id="titulo">Chat EPN</h1>
-
-<p class="par">Primero</p>
-<p class="par">Segundo</p>
+<h1 id="titulo">Mi patito nadadea en...</h1>
 
 <div id="contenedor-chat">
-
 </div>
 
 <label for="chat-texto">Texto</label>
@@ -26,21 +22,11 @@
 
 
 <script>
-    const titulo = document.getElementById('titulo');
-    titulo.style.backgroundColor = 'green';
-    titulo.onclick = () => {
-        console.log('Diste click al titulo ;( ');
-    };
-    function clickParrafo(){
-        alert('CUIDADO!!!');
-    }
+    
     function enviarMensaje() {
         
         const chatTexto = document.getElementById('chat-texto');
         const texto = chatTexto.value;
-        console.log(texto);
-
-        const idContenedor = 'contenedor-chat';
         const nombreEtiquetaHTMLChat = "p";
         const parrafo = document
             .createElement(nombreEtiquetaHTMLChat);
@@ -50,8 +36,11 @@
         </div>
         `;
         parrafo.innerHTML = contenidoHTML;
+        const idContenedor = 'contenedor-chat';
         anadirEtiqueta(idContenedor, parrafo);
-        peticionHolaMundo(texto);
+
+        peticionJuego(texto);
+
         chatTexto.value = "";
         chatTexto.focus();
     }
@@ -62,32 +51,26 @@
     }
 </script>
 
-
-
-<!--<script src="socket.io.js"></script>-->
 <script src="/websockets/socket.io.js"></script>
 <script>
     const url = 'http://localhost:3001/websockets';
     const socket = io(url);
-    console.log('Ya mismito nos conectamos :D');
     socket.on(
-        'connect', // nombre del evento
+        'connect',
         () => {
-            console.log('Estamos conectados!!');
-            //socket.disconnect();
-            //socket.connect();
+            console.log('Conectado');
         }
     );
     socket.on(
-        'disconnect', // nombre del evento
+        'disconnect',
         () => {
-            console.log('=( nos desconectamos.');
+            console.log('Desconectado');
         }
     );
+
     socket.on(
-        'saludaron', // nombre del evento
+        'respuesta',
         (data) => {
-            console.log('Nos saludaron.', data);
             const nombreContenedor = 'contenedor-chat';
             const nombreEtiqueta= 'p';
             const parrafo = document
@@ -101,8 +84,9 @@
             anadirEtiqueta(nombreContenedor,parrafo);
         }
     );
-    function peticionHolaMundo(texto) {
-        const nombreMetodo = 'holaMundo';
+
+    function peticionJuego(texto) {
+        const nombreMetodo = 'juego';
         const datos = {
             nombre: texto
         };

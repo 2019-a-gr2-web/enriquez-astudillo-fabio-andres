@@ -6,6 +6,7 @@ import { Cita } from "./cita";
 
 @Injectable()
 export class CitaService {
+    
     constructor(
         @InjectRepository(CitaEntity)
         private readonly _citaRepository: Repository<CitaEntity>
@@ -28,4 +29,6 @@ export class CitaService {
     actualizar(nuevaCita: Cita, parametros){
         this._citaRepository.update(parametros,nuevaCita)
     }
+
+    
 }

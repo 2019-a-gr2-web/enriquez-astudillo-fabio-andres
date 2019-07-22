@@ -48,11 +48,18 @@ export class CitaController {
         @Query() query
     ){
         let arrayCita
-        if(query.nombre)
+        if(query.nombre) {
             arrayCita = await this._citaService.buscar({nombre:query.nombre})
-        else
+            res.send({
+                id: arrayCita[0].id,
+                medico: arrayCita[0].medico.id,
+                paciente: arrayCita[0].paciente.id,
+                fecha: arrayCita[0].fecha
+            })
+        } else {
             arrayCita = await this._citaService.buscar()
-        res.send(arrayCita)
+            res.send(arrayCita)
+        }
     }
 
     @Delete('eliminar/:id')
