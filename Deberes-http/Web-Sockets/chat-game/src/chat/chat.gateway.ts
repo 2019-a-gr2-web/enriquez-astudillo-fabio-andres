@@ -20,10 +20,13 @@ export class ChatGateway {
     juego(client: Client | any, data: any){
         //console.log(data)
         const nombre:String = data.nombre.toUpperCase()
+        client.broadcast.emit('respuesta',data)
         if(nombre.includes('A')){
             client.emit('respuesta',{nombre: 'Te equivocaste, toma!!!'}); 
+            client.broadcast.emit('respuesta',{nombre: 'Te equivocaste, toma!!!'}); 
         } else {
             client.emit('respuesta',{nombre: 'Correcto, pasa al siguiente'}); 
+            client.broadcast.emit('respuesta',{nombre: 'Te equivocaste, toma!!!'}); 
         }
         return 'Hola '+ data.nombre;
     }
