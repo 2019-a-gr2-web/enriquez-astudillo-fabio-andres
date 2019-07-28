@@ -46,19 +46,26 @@ export class AppController {
   }
 
   @Get('/administrador')
-  getAdministrador(
+  async getAdministrador(
       @Session() session,
       @Res() res
   ){
+    try{
+      const equipos = await this.appService.recuperarEquipos()
       if(session.userName){
-          res.render('Administrador',
-          {
-            nombre:session.userName,
-            rol:session.rol
-          });
+        return res.render('Administrador',
+        {
+          nombre:session.userName,
+          rol:session.rol,
+          equipos
+        });
       }else{
-          res.redirect('/login');
+          return res.redirect('/login');
       }
+    } catch(exception){
+      console.log("No se pudeo iniciar")
+    }
+      
   }
 
     @Get('/cliente')

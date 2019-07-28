@@ -8,11 +8,32 @@
     <title>Interior</title>
 </head>
 <body>
-    <h1>Entraste</h1>'
-    <h2><%=nombre%></h2>
-    <h2><%=rol%></h2>
+    <h1>Entraste</h1>
+
+    <table>
+        <tr>
+            <th>Nombre</th>
+            <th>Liga</th>
+            <th>Fecha de Fundación</th>
+            <th>Copas Internacionales</th>
+            <th>Campeón Actual</th>
+            <th></th>
+        </tr>
+        <%equipos.forEach(function(it){%>
+        <tr>
+            <th><%=it.nombre%></th>
+            <th><%=it.liga%></th>
+            <th><%=it.fechaCreacion%></th>
+            <th><%=it.numeroCopasInternacionales%></th>
+            <th><%=it.campeonActual%></th>
+            <th><Button>Ingresar</Button></th>
+        </tr>
+        <%})%>
+    </table>
+
     <form action="/logout" method="POST">
         <button>Salir</button>
+
     </form>
 </body>
 </html>
